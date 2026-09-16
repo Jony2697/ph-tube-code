@@ -8,7 +8,9 @@
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
 <body>
-    <nav class="w-11/12 mx-auto flex justify-between border-b-2 border-gray-200 py-4">
+    <!-- Navbar -->
+    <header>
+        <nav class="w-11/12 mx-auto flex justify-between border-b-2 border-gray-200 py-4">
         <div>
             <img src="assets/Logo.png" alt="">
         </div>
@@ -19,5 +21,21 @@
             <button class="btn bg-[#FF1F3D] text-white">Blogs</button>
         </div>
     </nav>
+    </header>
+
+    <!-- header -->
+     <nav id="category-container" class="flex py-5 justify-center gap-5">
+        <button class="btn btn-sm bg-[#FF1F3D] text-white">All</button>
+        
+     </nav>
+
+     <!-- videos section -->
+     <section id="loadVideo-container" class="w-11/12 mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10 py-5">
+        
+
+     </section>
+
+
+     <script src="index.js"></script>
 </body>
 </html>
