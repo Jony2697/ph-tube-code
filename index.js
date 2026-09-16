@@ -55,8 +55,11 @@ const handleLoadVideos = (videos) => {
                 </div>
                 <div class="intro">
                     <h2 class="card-title">${video.title}</h2>
-                    <p class="flex items-center gap-2 text-[#17171770]">${video.authors[0].profile_name} <img class="w-4 h-4"
-                            src="https://img.icons8.com/?size=96&id=98A4yZTt9abw&format=png" alt="verified badge"></p>
+                    <p class="flex items-center gap-2 text-[#17171770]">${video.authors[0].profile_name}  
+                    ${
+                        video.authors[0].verified === true ? `<img class="w-4 h-4"
+                            src="https://img.icons8.com/?size=96&id=98A4yZTt9abw&format=png" alt="verified badge"></img>`: ""
+                    }</p>
                     <p class="text-[#17171770]">${video.others.views}</p>
                 </div>
             </div>
@@ -75,4 +78,4 @@ const handleLoadVideos = (videos) => {
 
 
 loadCategories();
-loadVideoes();
+
