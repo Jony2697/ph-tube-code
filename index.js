@@ -39,23 +39,29 @@ const handleLoadVideos = (videos) => {
         const div = document.createElement("div");
         div.innerHTML = `
             
-            <div class="card bg-base-100 w-full h-full  shadow-sm">
-  <figure>
-    <img 
-    
-      src=${video.thumbnail}
-      alt="Shoes"
-      class="w-full h-50"
-      />
-  </figure>
-  <div class="card-body">
-    <h2 class="card-title">${video.title}</h2>
-    <p>${video.description}</p>
-    <div class="card-actions justify-end">
-      <button class="btn btn-primary">Buy Now</button>
-    </div>
-  </div>
-</div>
+             <div class="card bg-base-100 w-full h-full  shadow-sm">
+            <figure class="relative">
+                <img src=${video.thumbnail} alt="Shoes" class="w-full h-50" />
+                <span class="absolute bottom-2 right-2 px-2 bg-[#171717] text-white rounded-sm">3hrs 56 min ago</span>
+            </figure>
+            <div class="flex gap-3 px-1 py-5">
+                <div class="profile">
+                    <div class="avatar">
+                        <div class="ring-primary ring-offset-base-100 w-10 rounded-full ">
+                            <img alt="Tailwind-CSS-Avatar-component"
+                                src=${video.authors[0].profile_picture} />
+                        </div>
+                    </div>
+                </div>
+                <div class="intro">
+                    <h2 class="card-title">${video.title}</h2>
+                    <p class="flex items-center gap-2 text-[#17171770]">${video.authors[0].profile_name} <img class="w-4 h-4"
+                            src="https://img.icons8.com/?size=96&id=98A4yZTt9abw&format=png" alt="verified badge"></p>
+                    <p class="text-[#17171770]">${video.others.views}</p>
+                </div>
+            </div>
+        </div>
+
         `
         videoContainer.appendChild(div);
 
