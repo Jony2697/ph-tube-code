@@ -10,14 +10,36 @@ function loadCategories() {
 const handleCategories = (categories) => {
     const categoryContainer = document.getElementById("category-container");
     for (let cat of categories) {
+        console.log(cat.category_id);
+        
         const div = document.createElement("div");
         div.innerHTML = `
-            <button class="btn btn-sm hover:bg-[#FF1F3D] hover:text-white">${cat.category}</button>
+            <button id="btn-${cat.category_id}" onclick="loadCategoriesVideo(${cat.category_id},this)"  class="btn btn-sm hover:bg-[#FF1F3D] hover:text-white">${cat.category}</button>
         `;
         categoryContainer.appendChild(div);
 
     }
 
+}
+
+
+
+const loadCategoriesVideo=(id)=>{
+    const loadCategoryContainer=document.getElementById("loadCategory-container");
+    const url=`https://openapi.programming-hero.com/api/phero-tube/category/${id}`;
+    console.log(id);
+
+    fetch(url)
+    .then((res) => res.json())
+    .then((data) => {
+        const clickButton=document.getElementById(`btn-${id}`);
+        clickButton.classList.add("active");
+        console.log(clickButton);
+        
+        handleLoadVideos(data.category)
+    });
+  
+     
 }
 
 
@@ -33,8 +55,19 @@ function loadVideoes() {
 
 const handleLoadVideos = (videos) => {
     const videoContainer = document.getElementById("loadVideo-container");
+    videoContainer.innerHTML="";
+    if(videos.length == 0 ){
+        videoContainer.innerHTML=`
+         <div class="col-span-full flex flex-col justify-center items-center gap-6 py-18">
+            <img class="w-36" src="img/Icon.png" alt="">
+            <h1 class="text-2xl font-semibold text-center">Oops!! Sorry, There is <br> no content here</h1>
+        </div>
+        `;
+        return;
+    }
+
     videos.forEach((video) => {
-        console.log(video);
+        // console.log(video);
 
         const div = document.createElement("div");
         div.innerHTML = `
@@ -78,4 +111,5 @@ const handleLoadVideos = (videos) => {
 
 
 loadCategories();
+loadVideoes();
 
