@@ -16,6 +16,36 @@ function removeActiveClass(){
     
 }
 
+function loadSingleVideos(id){
+    fetch(`https://openapi.programming-hero.com/api/phero-tube/video/${id}`)
+    .then(res=>res.json())
+    .then(data=>loadSingleVideo(data.video)
+    )
+   
+}
+
+
+const loadSingleVideo=(singleVideos)=>{
+    console.log(singleVideos);
+    document.getElementById("video_details").showModal();
+    const detailsContainer=document.getElementById("details_container");
+    detailsContainer.innerHTML=`
+        <div class="card bg-base-100 image-full w-96 shadow-sm mx-auto">
+  <figure>
+    <img
+      src=${singleVideos.thumbnail}
+      alt="Shoes" />
+  </figure>
+  <div class="card-body">
+    <h2 class="card-title">${singleVideos.title}</h2>
+    <p>${singleVideos.description}</p>
+  </div>
+</div>
+    `
+    
+}
+
+
 const handleCategories = (categories) => {
     const categoryContainer = document.getElementById("category-container");
     for (let cat of categories) {
@@ -108,14 +138,13 @@ const handleLoadVideos = (videos) => {
                     <p class="text-[#17171770]">${video.others.views}</p>
                 </div>
             </div>
+            <button onclick=loadSingleVideos('${video.video_id}') class="btn btn-block">Show details</button>
         </div>
 
         `
         videoContainer.appendChild(div);
 
     })
-
-
 
 }
 
